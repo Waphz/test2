@@ -1,0 +1,58 @@
+/* Alojamentos.scss */
+
+
+
+/* Defina estilos para o container pai */
+.alojamentos-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+/* Estilos para cada cartão de alojamento */
+.property-card {
+  width: calc(33.33% - 10px);
+  border: 1px solid #ccc;
+  padding: 10px;
+  cursor: pointer;
+  position: relative; /* Para posicionar a imagem interna */
+
+  /* Efeitos de hover */
+  transition: transform 0.2s ease-in-out;
+}
+
+.property-card:hover {
+  transform: scale(1.05);
+}
+
+/* Estilos para a imagem dentro do cartão */
+.property-card img {
+  max-width: 100%; /* Ajusta a largura da imagem ao tamanho do cartão */
+  max-height: 100px; /* Define a altura máxima da imagem */
+  margin-bottom: 10px; /* Adiciona margem na parte inferior da imagem */
+}
+
+/* Estilos para a informação do alojamento */
+.property-info {
+  /* Estilos para o texto do alojamento */
+  h3 {
+    margin: 0;
+    font-size: 16px;
+  }
+
+  p {
+    margin: 0;
+    font-size: 14px;
+    color: #555;
+  }
+}
+
+.custom-page-title {
+  font-size: 24px !important; /* Tamanho da fonte do título com !important para prioridade */
+  text-align: center; /* Alinhamento central */
+  margin: 20px 0; /* Espaço superior e inferior para afastar do topo da página */
+}
+
+
+/* Outros estilos, como estilos de popout da imagem, podem ser adicionados aqui */

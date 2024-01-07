@@ -1,0 +1,84 @@
+/* Clientes.scss */
+.clientes-avaliacoes-container {
+  padding: 20px;
+
+  .notification-boxes {
+    display: flex;
+    justify-content: space-between;
+
+    .avaliacoes-positivas,
+    .avaliacoes-negativas {
+      width: 48%;
+      border: 1px solid #ccc;
+      padding: 10px;
+
+      h2 {
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+
+        li {
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+
+  .custom-page-title {
+    font-size: 24px;
+    text-align: center;
+    margin: 20px 0;
+  }
+
+  .filtro-cliente {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+
+    .dx-textbox,
+    .dx-selectbox {
+      width: 30%;
+    }
+  }
+
+  .reviews-cliente {
+    margin-top: 20px;
+
+    h2 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+
+      li {
+        margin-bottom: 10px;
+      }
+    }
+
+    .date-filter {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+
+      button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #0056b3;
+        }
+      }
+    }
+  }
+}

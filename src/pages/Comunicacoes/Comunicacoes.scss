@@ -1,0 +1,32 @@
+/* Comunicacoes.scss */
+.comunicacoes-container {
+  padding: 20px;
+
+  .mensagens-recebidas, .respostas-rapidas, .historico-conversas, .alertas-notificacoes {
+    margin-bottom: 20px;
+  }
+
+.conversas {
+  margin-top: 20px;
+  max-height: 400px;
+  overflow-y: auto;
+
+  .mensagem {
+    background-color: #f5f5f5;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+
+    .conteudo-mensagem {
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+
+    .data-mensagem {
+      font-size: 12px;
+      text-align: right;
+      color: #666;
+    }
+  }
+}
+}

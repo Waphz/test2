@@ -1,0 +1,14 @@
+/* Reservas.scss */
+.reservas-container {
+    padding: 20px;
+  
+    .dx-scheduler, .dx-datagrid {
+      margin-top: 20px;
+    }
+  }
+  
+  .custom-page-title {
+    font-size: 24px !important; /* Tamanho da fonte do título com !important para prioridade */
+    text-align: center; /* Alinhamento central */
+    margin: 20px 0; /* Espaço superior e inferior para afastar do topo da página */
+  }
