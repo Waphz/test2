@@ -4,7 +4,6 @@ import { collection, getDocs, DocumentData } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import DataGrid, { Column, Paging, Pager } from 'devextreme-react/data-grid';
 
-// Importe o arquivo CSS atualizado
 import './Alojamentos.scss';
 
 const Alojamentos = () => {
@@ -14,8 +13,33 @@ const Alojamentos = () => {
 
   useEffect(() => {
     const fetchProperties = async () => {
-      const querySnapshot = await getDocs(collection(db, 'properties'));
-      setProperties(querySnapshot.docs.map(doc => doc.data() as DocumentData));
+      const querySnapshot = await getDocs(collection(db, 'alojamentos'));
+      setProperties(querySnapshot.docs.map(doc => {
+        const data = doc.data() as DocumentData;
+        // Adapte os campos abaixo conforme a nova estrutura da sua base de dados
+        return {
+          IDAlojamento: data.IDAlojamento,
+          Nome: data.Nome,
+          Morada: data.Morada,
+          Descrição: data.Descrição,
+          Quartos: data.Quartos,
+          Camas: data.Camas,
+          MaxHospedes: data.MaxHospedes,
+          CasasBanho: data.CasasBanho,
+          PreçoVerao: data.PreçoVerao,
+          PrecoInverno: data.PrecoInverno,
+          Comodidades: data.Comodidades,
+          Regras: data.Regras,
+          Notas: data.Notas,
+          Fotos: data.Fotos,
+          TempoLimpeza: data.TempoLimpeza,
+          Plataformas: data.Plataformas,
+          Tipo: data.Tipo,
+          PoliticaCancelamento: data.PoliticaCancelamento,
+          Fumador: data.Fumador,
+          Status: data.Status
+        };
+      }));
     };
 
     fetchProperties();
@@ -31,7 +55,6 @@ const Alojamentos = () => {
 
   return (
     <div>
-      {/* Título estilizado */}
       <h1 className="custom-page-title">Gestão de Alojamentos</h1>
 
       <div className="filter-container">
@@ -48,17 +71,18 @@ const Alojamentos = () => {
           .filter(property => {
             const searchValue = filter.toLowerCase();
             return (
-              property.Name.toLowerCase().includes(searchValue) ||
-              property.Description.toLowerCase().includes(searchValue) ||
-              property.Address.toLowerCase().includes(searchValue)
+              property.Nome.toLowerCase().includes(searchValue) ||
+              property.Descrição.toLowerCase().includes(searchValue) ||
+              property.Morada.toLowerCase().includes(searchValue)
             );
           })
           .map(property => (
-            <div key={property.PropertyID} className="property-card" onClick={() => handlePropertyClick(property.PropertyID)}>
-              <img src={property.Photos} alt={property.Name} />
+            <div key={property.IDAlojamento} className="property-card" onClick={() => handlePropertyClick(property.IDAlojamento)}>
+              <img src={property.Fotos} alt={property.Nome} />
               <div className="property-info">
-                <h3>{property.Name}</h3>
-                <p>{property.City}, {property.Country}</p>
+                <h3>{property.Nome}</h3>
+                <p>{property.Morada}</p>
+                {/* Adicione mais informações aqui conforme necessário */}
               </div>
             </div>
           ))}

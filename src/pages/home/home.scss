@@ -1,34 +1,47 @@
-.logos-container {
-  margin: 20px 0 40px 0;
+.home-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.home-header, .home-introduction, .home-services, .home-contact, .home-footer {
+  margin-bottom: 40px;
+}
+
+h1, h2 {
+  color: #333;
+}
+
+.home-header {
   text-align: center;
-  svg {
-    display: inline-block;
+}
+
+.home-services ul {
+  list-style: none;
+  padding: 0;
+}
+
+.home-footer {
+  text-align: center;
+  font-size: 0.8em;
+}
+
+/* Estilos para os logos removidos, pois não são mais necessários */
+/* .logos-container {
+  ...
+} */
+
+/* Estilos para o layout responsivo */
+@media screen and (max-width: 600px) {
+  .home-container {
+    padding: 10px;
   }
-}
 
-.devextreme-logo {
-  width: 200px;
-  height: 34px;
-  margin-bottom: 19px;
-}
+  h1, h2 {
+    font-size: 1.5em;
+  }
 
-.react-logo {
-  width: 184px;
-  height: 68px;
-}
-
-.plus {
-  margin: 23px 10px;
-  width: 22px;
-  height: 22px;
-}
-
-.screen-x-small .logos-container {
-  svg {
-    width: 100%;
-    display: block;
-    &.plus {
-      margin: 0;
-    }
+  .home-services ul {
+    padding-left: 20px;
   }
 }
