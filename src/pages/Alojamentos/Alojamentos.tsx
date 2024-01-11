@@ -23,7 +23,7 @@ const Alojamentos = () => {
   }, []);
 
   const handlePropertyClick = (propertyId: string) => {
-    history(`/alojamentos/${propertyId}`);
+    history(`/Alojamentos/detalhes/${propertyId}`);
   };
 
   const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {

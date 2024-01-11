@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import db from '../../firebaseConfig';
+import db from '../../../firebaseConfig';
 import { doc, getDoc } from 'firebase/firestore';
-import { Alojamentos as AlojamentosModel } from '../../models/Alojamentos';
+import { Alojamentos as AlojamentosModel } from '../../../models/Alojamentos';
 
 const DetalhesAlojamento = () => {
   const [alojamento, setAlojamento] = useState<AlojamentosModel | null>(null);

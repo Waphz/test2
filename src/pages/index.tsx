@@ -8,4 +8,4 @@ export { default as TransacoesFinanceiras } from './TransacoesFinanceiras/Transa
 export { default as ServicosManutencao } from './ServicosManutencao/ServicosManutencao';
 export { default as Comunicacoes } from './Comunicacoes/Comunicacoes';
 export { default as TesteChatbot } from './TesteChatbot/TesteChatbot';
-export { default as DetalhesAlojamento } from './Alojamentos/DetalhesAlojamento';
+export { default as DetalhesAlojamento } from './Alojamentos/detalhes/DetalhesAlojamento';
