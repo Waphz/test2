@@ -9,6 +9,7 @@ import './DetalhesAlojamento.scss';
 
 const DetalhesAlojamento = () => {
   const [alojamento, setAlojamento] = useState<AlojamentosModel | null>(null);
+  const [imagemPrincipal, setImagemPrincipal] = useState('');
   const [reviews, setReviews] = useState<ReviewsModel[]>([]);
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
@@ -20,7 +21,9 @@ const DetalhesAlojamento = () => {
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
-          setAlojamento(docSnap.data() as AlojamentosModel);
+          const data = docSnap.data() as AlojamentosModel;
+          setAlojamento(data);
+          setImagemPrincipal(data.Fotos[0]);
           fetchReviews(id);
         } else {
           console.log('Nenhum alojamento encontrado!');
@@ -37,6 +40,10 @@ const DetalhesAlojamento = () => {
     fetchAlojamento();
   }, [id]);
 
+  const handleMiniaturaClick = (foto: string) => {
+    setImagemPrincipal(foto);
+  };
+
   const handleEditClick = () => {
     navigate(`/editar-alojamento/${id}`);
   };
@@ -48,22 +55,52 @@ const DetalhesAlojamento = () => {
   return (
     <div className="detalhes-alojamento">
       <div className="foto-e-info">
-        <img src={alojamento.Fotos[0]} alt={alojamento.Nome} className="foto-alojamento" />
+        <div className="galeria-alojamento">
+          <img src={imagemPrincipal} alt={alojamento.Nome} className="foto-alojamento" />
+          <div className="miniaturas">
+            {alojamento.Fotos.map((foto, index) => (
+              <img 
+                key={index} 
+                src={foto} 
+                alt={`Miniatura ${index + 1}`} 
+                onClick={() => handleMiniaturaClick(foto)}
+                style={{ width: '100px', margin: '0 10px 10px 0', cursor: 'pointer' }}
+              />
+            ))}
+          </div>
+        </div>
         <div className="info-alojamento">
-          <h1>{alojamento.Nome}</h1>
+          <h1 className="custom-page-title">{alojamento.Nome}</h1>
           <div className="reviews">
             {reviews.map(review => (
-              <p key={review.IDReview}>{review.Comentário}</p>
+              <div key={review.IDReview}>
+                <p><strong>Nome:</strong> {review.Nome}</p>
+                <p><strong>Comentário:</strong> {review.Comentário}</p>
+                <p><strong>Rating:</strong> {review.Rating}</p>
+              </div>
             ))}
           </div>
         </div>
       </div>
       <div className="caracteristicas-alojamento">
-        <p>Morada: {alojamento.Morada}</p>
-        <p>Descrição: {alojamento.Descrição}</p>
-        {/* Adicione aqui outras características do alojamento */}
-        <button onClick={handleEditClick} className="botao-editar">Editar</button>
-      </div>
+      <p>Morada: {alojamento.Morada}</p>
+      <p>Descrição: {alojamento.Descrição}</p>
+      <p>Quartos: {alojamento.Quartos}</p>
+      <p>Camas: {alojamento.Camas}</p>
+      <p>Máximo de Hóspedes: {alojamento.MaxHospedes}</p>
+      <p>Casas de Banho: {alojamento.CasasBanho}</p>
+      <p>Preço Verão: {alojamento.PreçoVerao}</p>
+      <p>Preço Inverno: {alojamento.PrecoInverno}</p>
+      <p>Comodidades: {alojamento.Comodidades.join(', ')}</p>
+      <p>Regras: {alojamento.Regras}</p>
+      <p>Notas: {alojamento.Notas}</p>
+      <p>Tempo de Limpeza: {alojamento.TempoLimpeza}</p>
+      <p>Tipo: {alojamento.Tipo}</p>
+      <p>Política de Cancelamento: {alojamento.PoliticaCancelamento}</p>
+      <p>Fumador: {alojamento.Fumador ? 'Sim' : 'Não'}</p>
+      <p>Status: {alojamento.Status}</p>
+      <button onClick={handleEditClick} className="botao-editar">Editar</button>
+    </div>
     </div>
   );
 };

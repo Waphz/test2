@@ -8,17 +8,25 @@
       margin-bottom: 20px;
   
       .galeria-alojamento {
-        width: 50%;
+        flex-basis: 50%; // Define uma base para o tamanho da galeria
+        display: flex;
+        flex-direction: column;
         margin-right: 20px;
   
         .foto-alojamento {
-          width: 100%;
-          margin-bottom: 10px;
+          flex-grow: 0; // Impede que a foto cresça além do necessário
+          flex-shrink: 0; // Impede que a foto encolha
+          width: auto; // Largura automática para manter a proporção
+          max-width: 300px; // Limita a largura máxima
+          max-height: 200px; // Limita a altura máxima
+          object-fit: contain; // Garante que a imagem se ajuste dentro das dimensões definidas
+          border: 1px solid #ccc;
         }
   
         .miniaturas {
           display: flex;
           overflow-x: auto;
+          margin-top: 10px;
   
           img {
             width: 100px;
@@ -47,6 +55,11 @@
       border: 1px solid #ccc;
       padding: 20px;
       position: relative;
+      margin-top: 20px;
+  
+      p {
+        margin-bottom: 10px;
+      }
   
       .botao-editar {
         position: absolute;
@@ -61,12 +74,13 @@
         &:hover {
           background-color: #0056b3;
         }
-        .custom-page-title {
-            font-size: 24px !important; /* Tamanho da fonte do título com !important para prioridade */
-            text-align: center; /* Alinhamento central */
-            margin: 20px 0; /* Espaço superior e inferior para afastar do topo da página */
-          }
       }
+    }
+  
+    .custom-page-title {
+      font-size: 36px !important;
+      text-align: center;
+      margin: 20px 0;
     }
   }
   
