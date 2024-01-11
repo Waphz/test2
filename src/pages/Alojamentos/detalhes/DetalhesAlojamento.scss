@@ -7,9 +7,25 @@
       display: flex;
       margin-bottom: 20px;
   
-      .foto-alojamento {
+      .galeria-alojamento {
         width: 50%;
         margin-right: 20px;
+  
+        .foto-alojamento {
+          width: 100%;
+          margin-bottom: 10px;
+        }
+  
+        .miniaturas {
+          display: flex;
+          overflow-x: auto;
+  
+          img {
+            width: 100px;
+            margin-right: 10px;
+            cursor: pointer;
+          }
+        }
       }
   
       .info-alojamento {
@@ -45,6 +61,11 @@
         &:hover {
           background-color: #0056b3;
         }
+        .custom-page-title {
+            font-size: 24px !important; /* Tamanho da fonte do título com !important para prioridade */
+            text-align: center; /* Alinhamento central */
+            margin: 20px 0; /* Espaço superior e inferior para afastar do topo da página */
+          }
       }
     }
   }
