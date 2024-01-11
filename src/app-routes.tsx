@@ -1,4 +1,4 @@
-import { HomePage, TasksPage, ProfilePage, AlojamentPage, Reservas, Clientes, TransacoesFinanceiras, ServicosManutencao, Comunicacoes, TesteChatbot } from './pages';
+import { HomePage, TasksPage, ProfilePage, AlojamentPage, Reservas, Clientes, TransacoesFinanceiras, ServicosManutencao, Comunicacoes, TesteChatbot, DetalhesAlojamento } from './pages';
 import { withNavigationWatcher } from './contexts/navigation';
 
 const routes = [
@@ -41,6 +41,10 @@ const routes = [
     {
         path: '/TesteChatbot',
         element: TesteChatbot
+    },
+    {
+        path: '/Alojamentos',
+        element: DetalhesAlojamento
     }
 ];
 

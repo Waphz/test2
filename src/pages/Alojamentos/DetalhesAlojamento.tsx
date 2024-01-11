@@ -10,18 +10,24 @@ const DetalhesAlojamento = () => {
 
   useEffect(() => {
     const fetchAlojamento = async () => {
-      const docRef = doc(db, 'alojamentos', id);
-      const docSnap = await getDoc(docRef);
+      if (id) { // Verifica se o ID está definido
+        const docRef = doc(db, 'alojamentos', id);
+        const docSnap = await getDoc(docRef);
 
-      if (docSnap.exists()) {
-        setAlojamento(docSnap.data() as AlojamentosModel);
-      } else {
-        console.log('Nenhum alojamento encontrado!');
+        if (docSnap.exists()) {
+          setAlojamento(docSnap.data() as AlojamentosModel);
+        } else {
+          console.log('Nenhum alojamento encontrado!');
+        }
       }
     };
 
     fetchAlojamento();
   }, [id]);
+
+  if (!id) {
+    return <div>ID do alojamento não fornecido.</div>;
+  }
 
   if (!alojamento) {
     return <div>Carregando...</div>;

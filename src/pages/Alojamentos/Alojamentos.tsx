@@ -1,3 +1,4 @@
+// src/pages/Alojamentos/Alojamentos.tsx
 import React, { useState, useEffect } from 'react';
 import db from '../../firebaseConfig';
 import { collection, getDocs } from 'firebase/firestore';
@@ -21,7 +22,7 @@ const Alojamentos = () => {
     fetchProperties();
   }, []);
 
-  const handlePropertyClick = (propertyId: string) => { 
+  const handlePropertyClick = (propertyId: string) => {
     history(`/alojamentos/${propertyId}`);
   };
 
