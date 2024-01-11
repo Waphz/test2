@@ -43,7 +43,7 @@ const routes = [
         element: TesteChatbot
     },
     {
-        path: '/Alojamentos/detalhes',
+        path: '/Alojamentos/detalhes/:id',
         element: DetalhesAlojamento
     }
 ];

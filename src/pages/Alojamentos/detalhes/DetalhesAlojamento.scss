@@ -1,0 +1,51 @@
+.detalhes-alojamento {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+  
+    .foto-e-info {
+      display: flex;
+      margin-bottom: 20px;
+  
+      .foto-alojamento {
+        width: 50%;
+        margin-right: 20px;
+      }
+  
+      .info-alojamento {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+  
+        .reviews {
+          flex-grow: 1;
+          overflow-y: auto;
+          border: 1px solid #ccc;
+          padding: 10px;
+          margin-top: 20px;
+        }
+      }
+    }
+  
+    .caracteristicas-alojamento {
+      border: 1px solid #ccc;
+      padding: 20px;
+      position: relative;
+  
+      .botao-editar {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        padding: 5px 10px;
+        border: none;
+        background-color: #007bff;
+        color: white;
+        cursor: pointer;
+  
+        &:hover {
+          background-color: #0056b3;
+        }
+      }
+    }
+  }
+  
