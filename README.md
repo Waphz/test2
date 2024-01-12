@@ -24,9 +24,9 @@ Mensagens (mensagens):Registra mensagens trocadas entre clientes e usuários do 
 
 
 Há correlação entre as lista vias os ID de cada tabela.
+Exemplo:
+Reviews (reviews): IDReserva - refere-se a IDReserva presente na tabela Reservas (reservas); Remetente/Destinatário - tem ou IDCliente da tabela Clientes (clientes) ou IDUsuario - da tabela Usuários (usuarios); Canal - refere-se ao IDCanal presente em Canais (canais), etc; o mesmo acontece nas outras tabelas.
 
 
-Esta em firebase
 
-
-
+A BD esta em FireBase.
