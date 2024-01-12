@@ -140,7 +140,7 @@ const DetalhesAlojamento = () => {
                 src={foto} 
                 alt={`Miniatura ${index + 1}`} 
                 onClick={() => handleMiniaturaClick(foto)}
-                style={{ width: '100px', margin: '0 10px 10px 0', cursor: 'pointer' }}
+                style={{ width: '80px', margin: '0 10px 10px 0', cursor: 'pointer' }}
               />
             ))}
           </div>
