@@ -1,86 +1,137 @@
 .detalhes-alojamento {
-    display: flex;
-    flex-direction: column;
-    margin: 20px;
-  
-    .foto-e-info {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+
+  .foto-e-info {
       display: flex;
       margin-bottom: 20px;
-  
+      align-items: start;
+
       .galeria-alojamento {
-        flex-basis: 50%; // Define uma base para o tamanho da galeria
-        display: flex;
-        flex-direction: column;
-        margin-right: 20px;
-  
-        .foto-alojamento {
-          flex-grow: 0; // Impede que a foto cresça além do necessário
-          flex-shrink: 0; // Impede que a foto encolha
-          width: auto; // Largura automática para manter a proporção
-          max-width: 500px; // Limita a largura máxima
-          max-height: 300px; // Limita a altura máxima
-          object-fit: contain; // Garante que a imagem se ajuste dentro das dimensões definidas
-          border: 1px solid #ccc;
-        }
-  
-        .miniaturas {
+          flex: 1;
           display: flex;
-          overflow-x: auto;
-          margin-top: 10px;
-  
-          img {
-            width: 100px;
-            margin-right: 10px;
-            cursor: pointer;
-          }
-        }
-      }
-  
-      .info-alojamento {
-        flex-grow: 1;
-        display: flex;
-        flex-direction: column;
-  
-        .reviews {
-          flex-grow: 1;
-          overflow-y: auto;
-          border: 1px solid #ccc;
-          padding: 10px;
+          flex-direction: column;
+          margin-right: 20px;
           margin-top: 20px;
-        }
+          margin-left: 20px;
+
+          .foto-alojamento {
+              width: 100%;
+              max-height: 400px;
+              object-fit: contain;
+              border: 1px solid #ccc;
+          }
+          .botao-voltar {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 5px 10px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        
+            &:hover {
+              background-color: #0056b3;
+            }
+          }
+
+          .miniaturas {
+              display: flex;
+              justify-content: center; // Centraliza as miniaturas
+              overflow-x: auto;
+              margin-top: 10px;
+
+              img {
+                  width: 80px;
+                  height: 60px;
+                  object-fit: cover;
+                  margin-right: 10px;
+                  cursor: pointer;
+              }
+          }
       }
-    }
-  
-    .caracteristicas-alojamento {
+
+      .info-alojamento {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+
+          .reviews-container {
+              flex-grow: 1;
+              overflow-y: auto;
+              border: 1px solid #ccc;
+              margin-top: 10px;
+              padding: 5px;
+
+              .review-summary {
+                  // Estilos existentes
+              }
+          }
+      }
+  }
+
+  .caracteristicas-alojamento {
       border: 1px solid #ccc;
       padding: 20px;
       position: relative;
       margin-top: 20px;
-  
+      background-color: #f5f5f5; // Fundo levemente cinza
+      border-radius: 5px; // Borda arredondada
+
+      h2 {
+          font-size: 1.5em;
+          margin-bottom: 15px;
+      }
+
       p {
-        margin-bottom: 10px;
+          margin-bottom: 10px;
       }
-  
-      .botao-editar {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        padding: 5px 10px;
-        border: none;
-        background-color: #007bff;
-        color: white;
-        cursor: pointer;
-  
-        &:hover {
-          background-color: #0056b3;
-        }
-      }
-    }
-  
-    .custom-page-title {
-      font-size: 36px !important;
-      text-align: center;
-      margin: 20px 0;
-    }
   }
-  
+
+  .botao-status {
+    margin-top: 20px;
+    padding: 10px 15px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: #0056b3;
+    }
+
+    &:active {
+        background-color: #003f7f;
+    }
+}
+.botao-editar {
+  padding: 5px 10px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+      background-color: #0056b3;
+  }
+}
+
+
+
+.botao-editar {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.custom-page-title {
+  font-size: 36px;
+  text-align: center;
+  margin: 20px 0;
+}
+}
