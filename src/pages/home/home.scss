@@ -16,9 +16,31 @@ h1, h2 {
   text-align: center;
 }
 
-.home-services ul {
-  list-style: none;
-  padding: 0;
+.home-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.reservas-lista {
+  width: 45%;
+  background-color: #f5f5f5;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.calendario-wrapper {
+  width: 45%;
+}
+
+.reserva-item {
+  cursor: pointer;
+  padding: 5px;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 5px;
+}
+
+.reserva-item:hover {
+  background-color: #eaeaea;
 }
 
 .home-footer {
@@ -26,12 +48,6 @@ h1, h2 {
   font-size: 0.8em;
 }
 
-/* Estilos para os logos removidos, pois não são mais necessários */
-/* .logos-container {
-  ...
-} */
-
-/* Estilos para o layout responsivo */
 @media screen and (max-width: 600px) {
   .home-container {
     padding: 10px;
@@ -41,7 +57,12 @@ h1, h2 {
     font-size: 1.5em;
   }
 
-  .home-services ul {
-    padding-left: 20px;
+  .home-content {
+    flex-direction: column;
+  }
+
+  .reservas-lista, .calendario-wrapper {
+    width: 100%;
+    margin-bottom: 20px;
   }
 }

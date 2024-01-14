@@ -19,10 +19,13 @@
     "firebase-admin": "^12.0.0",
     "fs": "^0.0.1-security",
     "json2csv": "^6.0.0-alpha.2",
+    "momen": "^0.0.1-security",
     "pandas": "^0.0.3",
     "pdfkit": "^0.14.0",
     "react": "^18.2.0",
     "react-app-polyfill": "^1.0.0",
+    "react-big-calendar": "^1.8.6",
+    "react-calendar": "^4.8.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
@@ -59,6 +62,7 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@types/react-big-calendar": "^1.8.8",
     "devextreme-cli": "1.6.5",
     "devextreme-themebuilder": "23.2.3"
   }

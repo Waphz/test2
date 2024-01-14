@@ -1,137 +1,157 @@
+// test2/src/pages/Alojamentos/detalhes/DetalhesAlojamento.scss
 .detalhes-alojamento {
-  display: flex;
-  flex-direction: column;
-  margin: 20px;
-
-  .foto-e-info {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+  
+    .foto-e-info {
       display: flex;
       margin-bottom: 20px;
       align-items: start;
-
+  
       .galeria-alojamento {
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          margin-right: 20px;
-          margin-top: 20px;
-          margin-left: 20px;
-
-          .foto-alojamento {
-              width: 100%;
-              max-height: 400px;
-              object-fit: contain;
-              border: 1px solid #ccc;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        margin-right: 20px;
+        margin-top: 20px;
+        margin-left: 20px;
+  
+        .foto-alojamento {
+          width: 100%;
+          max-height: 400px;
+          object-fit: contain;
+          border: 1px solid #ccc;
+        }
+  
+        .botao-voltar {
+          position: absolute;
+          top: 10px;
+          left: 10px;
+          padding: 5px 10px;
+          border: none;
+          background-color: #007bff;
+          color: white;
+          cursor: pointer;
+  
+          &:hover {
+            background-color: #0056b3;
           }
-          .botao-voltar {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            padding: 5px 10px;
-            border: none;
-            background-color: #007bff;
-            color: white;
+        }
+  
+        .miniaturas {
+          display: flex;
+          justify-content: center;
+          overflow-x: auto;
+          margin-top: 10px;
+  
+          img {
+            width: 80px;
+            height: 60px;
+            object-fit: cover;
+            margin-right: 10px;
             cursor: pointer;
-        
+          }
+        }
+      }
+  
+      .info-alojamento {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+  
+        .reviews-container {
+          flex-grow: 1;
+          overflow-y: auto;
+          border: 1px solid #ccc;
+          margin-top: 10px;
+          padding: 5px;
+  
+          .review-summary {
+            background: none;
+            border: none;
+            text-align: left;
+            padding: 5px;
+            width: 100%;
+            cursor: pointer;
+            display: block;
+  
             &:hover {
-              background-color: #0056b3;
+              background-color: #f0f0f0;
+            }
+  
+            span {
+              color: #333;
+  
+              &:last-child {
+                color: darkgray;
+              }
             }
           }
-
-          .miniaturas {
-              display: flex;
-              justify-content: center; // Centraliza as miniaturas
-              overflow-x: auto;
-              margin-top: 10px;
-
-              img {
-                  width: 80px;
-                  height: 60px;
-                  object-fit: cover;
-                  margin-right: 10px;
-                  cursor: pointer;
-              }
-          }
+        }
       }
-
-      .info-alojamento {
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-
-          .reviews-container {
-              flex-grow: 1;
-              overflow-y: auto;
-              border: 1px solid #ccc;
-              margin-top: 10px;
-              padding: 5px;
-
-              .review-summary {
-                  // Estilos existentes
-              }
-          }
-      }
-  }
-
-  .caracteristicas-alojamento {
+    }
+  
+    .caracteristicas-alojamento {
       border: 1px solid #ccc;
       padding: 20px;
       position: relative;
       margin-top: 20px;
-      background-color: #f5f5f5; // Fundo levemente cinza
-      border-radius: 5px; // Borda arredondada
-
+      background-color: #f5f5f5;
+      border-radius: 5px;
+  
       h2 {
-          font-size: 1.5em;
-          margin-bottom: 15px;
+        font-size: 1.5em;
+        margin-bottom: 15px;
       }
-
+  
       p {
-          margin-bottom: 10px;
+        margin-bottom: 10px;
       }
-  }
-
-  .botao-status {
-    margin-top: 20px;
-    padding: 10px 15px;
-    border: none;
-    background-color: #007bff;
-    color: white;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-
-    &:hover {
+    }
+  
+    .botao-status {
+      margin-top: 20px;
+      padding: 10px 15px;
+      border: none;
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+  
+      &:hover {
         background-color: #0056b3;
-    }
-
-    &:active {
+      }
+  
+      &:active {
         background-color: #003f7f;
+      }
     }
-}
-.botao-editar {
-  padding: 5px 10px;
-  border: none;
-  background-color: #007bff;
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.3s;
-
-  &:hover {
-      background-color: #0056b3;
+  
+    .botao-editar {
+      padding: 5px 10px;
+      border: none;
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s;
+  
+      &:hover {
+        background-color: #0056b3;
+      }
+    }
+  
+    .botao-editar {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+  
+    .custom-page-title {
+      font-size: 36px;
+      text-align: center;
+      margin: 20px 0;
+    }
   }
-}
-
-
-
-.botao-editar {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-}
-
-.custom-page-title {
-  font-size: 36px;
-  text-align: center;
-  margin: 20px 0;
-}
-}
+  

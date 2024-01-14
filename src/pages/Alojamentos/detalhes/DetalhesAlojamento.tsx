@@ -8,6 +8,8 @@ import { Clientes as ClientesModel } from '../../../models/Clientes';
 import { Comodidades as ComodidadesModel } from '../../../models/Comodidades';
 import { TiposAlojamento as TiposAlojamentoModel } from '../../../models/TiposAlojamento';
 import { Plataformas as PlataformasModel } from '../../../models/Plataformas';
+import { Reservas as ReservasModel } from '../../../models/Reservas';
+import CalendarioReservas from '../../../components/calendar/CalendarioReservas';
 
 import './DetalhesAlojamento.scss';
 
@@ -34,31 +36,34 @@ const DetalhesAlojamento = () => {
   const [reviews, setReviews] = useState<ReviewComCliente[]>([]);
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const [reservas, setReservas] = useState<ReservasModel[]>([]);
 
   useEffect(() => {
+    // Fetching client data
     const fetchClientes = async (clientesIds: string[]): Promise<ClientesModel[]> => {
       const clientesPromises = clientesIds.map(id => getDoc(doc(db, 'clientes', id)));
       const clientesDocs = await Promise.all(clientesPromises);
       return clientesDocs.map(doc => doc.data() as ClientesModel);
     };
 
+    // Fetching reviews
     const fetchReviews = async (alojamentoId: string) => {
-      // Buscar reservas associadas ao alojamento
+      // Fetching reservations associated with the accommodation
       const reservasQuery = query(collection(db, 'reservas'), where('IDAlojamento', '==', alojamentoId));
       const reservasSnapshot = await getDocs(reservasQuery);
       const reservasIds = reservasSnapshot.docs.map(doc => doc.id);
 
-      // Buscar reviews baseadas nas reservas obtidas
+      // Fetching reviews based on the obtained reservations
       if (reservasIds.length > 0) {
         const reviewsQuery = query(collection(db, 'reviews'), where('IDReserva', 'in', reservasIds));
         const reviewsSnapshot = await getDocs(reviewsQuery);
         const reviewsData = reviewsSnapshot.docs.map(doc => ({ ...doc.data(), IDReview: doc.id }) as ReviewsModel);
 
-        // Buscar informações dos clientes associados às reviews
+        // Fetching information of clients associated with the reviews
         const clientes = await fetchClientes(reviewsData.map(r => r.IDCliente));
         const reviewsComClientes = reviewsData.map(review => {
           const cliente = clientes.find(c => c.IDCliente === review.IDCliente);
-          const reviewDate = review.Data.toDate(); // Convertendo Timestamp para Date
+          const reviewDate = review.Data.toDate(); // Converting Timestamp to Date
           const diasDesdeReview = Math.floor((new Date().getTime() - reviewDate.getTime()) / (1000 * 3600 * 24));
           return {
             ...review,
@@ -71,7 +76,9 @@ const DetalhesAlojamento = () => {
       }
     };
 
+    // Fetching additional information
     const fetchInformacoesAdicionais = async (alojamentoData: AlojamentosModel) => {
+      // Fetching amenities
       const comodidadesSnapshot = await getDocs(collection(db, 'comodidades'));
       const comodidadesMap = comodidadesSnapshot.docs.reduce((acc: ComodidadesMap, doc) => {
         const data = doc.data() as ComodidadesModel;
@@ -79,6 +86,7 @@ const DetalhesAlojamento = () => {
         return acc;
       }, {} as ComodidadesMap);
 
+      // Fetching accommodation types
       const tiposAlojamentoSnapshot = await getDocs(collection(db, 'tiposAlojamento'));
       const tiposAlojamentoMap = tiposAlojamentoSnapshot.docs.reduce((acc: TiposAlojamentoMap, doc) => {
         const data = doc.data() as TiposAlojamentoModel;
@@ -86,6 +94,7 @@ const DetalhesAlojamento = () => {
         return acc;
       }, {} as TiposAlojamentoMap);
 
+      // Fetching platforms
       const plataformasSnapshot = await getDocs(collection(db, 'plataformas'));
       const plataformasMap = plataformasSnapshot.docs.reduce((acc: PlataformasMap, doc) => {
         const data = doc.data() as PlataformasModel;
@@ -93,6 +102,7 @@ const DetalhesAlojamento = () => {
         return acc;
       }, {} as PlataformasMap);
 
+      // Setting accommodation state
       setAlojamento({
         ...alojamentoData,
         Comodidades: alojamentoData.Comodidades.map(id => comodidadesMap[id]).filter(Boolean),
@@ -101,6 +111,7 @@ const DetalhesAlojamento = () => {
       });
     };
 
+    // Fetching accommodation
     const fetchAlojamento = async () => {
       if (id) {
         const docRef = doc(db, 'alojamentos', id);
@@ -117,18 +128,39 @@ const DetalhesAlojamento = () => {
       }
     };
 
-    fetchAlojamento();
+    const fetchReservas = async () => {
+      const reservasQuery = query(collection(db, 'reservas'), where('IDAlojamento', '==', id));
+      const reservasSnapshot = await getDocs(reservasQuery);
+      const reservasData = reservasSnapshot.docs.map(doc => {
+        const data = doc.data();
+        return {
+          IDReserva: doc.id,
+          Plataforma: data.Plataforma,
+          IDCliente: data.IDCliente,
+          IDAlojamento: data.IDAlojamento,
+          NumHospedes: data.NumHospedes,
+          CheckIn: data.CheckIn.toDate(), // Convertendo para Date
+          CheckOut: data.CheckOut.toDate(), // Convertendo para Date
+          Valor: data.Valor,
+          Notas: data.Notas,
+          Status: data.Status
+        };
+      });
+      setReservas(reservasData);
+    };
+      
   }, [id]);
 
-
   const handleReviewClick = (reviewId: string) => () => {
-    navigate('/'); // Altere conforme necessário
+    navigate('/'); // Change as necessary
   };
 
+  // Loading state
   if (!id || !alojamento) {
     return <div>Carregando...</div>;
   }
 
+  // Main render
   return (
     <div className="detalhes-alojamento">
       <button onClick={() => navigate(-1)} className="botao-voltar">Voltar</button>
@@ -159,6 +191,9 @@ const DetalhesAlojamento = () => {
                   </button>
                 ))}
               </div>
+                <div className="calendario-reservas-container">
+                  <CalendarioReservas reservas={reservas} />
+                </div>
             </div>
           </div>
           <div className="caracteristicas-alojamento">
